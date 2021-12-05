@@ -13,6 +13,11 @@ $mail = new PHPMailer(true);//instancia a classe PHPMailer, permite q var/objeto
  error_reporting(E_ALL); ini_set('display_errors', 1);
 try {
     //Server settings
+    /*
+host: smtp.gmail.com
+port: 587 or 465 (587 for tls, 465 for ssl)
+protocol: tls or ssl
+    */
     $mail->SMTPDebug  = 1; // enables SMTP debug information (for testing)
                        // 1 = errors and messages
                        // 2 = messages only
@@ -24,8 +29,8 @@ try {
     $mail->Username   = 'profweb27@gmail.com';                     //SMTP username
     $mail->Password   = 'passTestes';                               //SMTP password
     //$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
-    $mail ->  SMTPSecure ='tls';
-    $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+    $mail ->  SMTPSecure ='ssl';
+    $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
     $mail->setFrom('profweb27@gmail.com', 'Empresa');
