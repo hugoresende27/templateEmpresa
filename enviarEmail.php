@@ -10,10 +10,13 @@ require 'vendor/autoload.php';
 
 //Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);//instancia a classe PHPMailer, permite q var/objeto mail herde propriedades
-
+ error_reporting(E_ALL); ini_set('display_errors', 1);
 try {
     //Server settings
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+    $mail->SMTPDebug  = 1; // enables SMTP debug information (for testing)
+                       // 1 = errors and messages
+                       // 2 = messages only
+    //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
     $mail->isSMTP();                                            //Send using SMTP
     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     //$mail->Host = 'smtp.aol.com'; 
