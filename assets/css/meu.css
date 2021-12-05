@@ -1,0 +1,76 @@
+/*  cabeçalho (topo)*/
+
+.fundo-topo{
+    background-color: darkblue;
+    color: #fff;
+}
+
+.logo{
+    width: 65px;;
+    height: 50px;
+    border-radius: 50%;
+}
+
+/*TOPO DE NAVEGAÇÃO*/
+
+.topo-nav{
+    font-size: 2em;/*em  são valores relativos ao elemento, 2em duas vezes o tamanho normal*/
+}
+
+.topo-nav a{
+    color: #fff;
+    text-decoration: none;
+    margin-left: 30px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.2rem;/*rem são relativos ao elemento root*/
+    /*
+    px são valores fixos, 
+    
+    */
+}
+.topo-nav a:hover{
+    color: yellow;
+    font-weight: 900;
+}
+
+/* RODAPE (footer) */
+.fundo-rodape{
+    background-color: darkorange;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.link-email{
+    text-decoration: none;
+    color: black;
+}
+.link-email:hover{
+    text-decoration: none;
+    color: darkblue;
+}
+
+/*SLIDES*/
+
+.slide1{
+    padding: 50px;
+    font-size: 2em;
+    background-color: chocolate;
+    color: #fff;
+}
+.slide2{
+    padding: 50px;
+    font-size: 2em;
+    background-color: darkmagenta;
+    color: #fff;
+}
+.slide3{
+    padding: 50px;
+    font-size: 2em;
+    background-color: darkolivegreen;
+    color: #fff;
+}
+
+.separador {
+    margin-top: 50px;
+}
