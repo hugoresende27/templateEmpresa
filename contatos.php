@@ -106,12 +106,12 @@
     <div class="row mt-2 mb-2">
         <div class="offset-3 col-6">
 
-        <h1>CONTATOS</h1>
+        <h1>CONTATOS (envio de email)</h1>
 
         <form action="?p=contatos" method="post">  <!--ESTE FORM EM action vai ser submetido à mesma página, ?p=contatos = index.php?p=contatos-->
             <input type="hidden" name="formulario" value ="email">
             <div class="form-group">
-                <input type="email" name="txtEmail" class="form-control" placeholder="Email" required >
+                <input type="email" name="txtEmail" class="form-control" placeholder="Destinatário do email" required >
             </div>
             <div class="form-group">
                 <input type="text" name="txtAssunto" class="form-control" placeholder="assunto..." required >

@@ -57,6 +57,11 @@ incluir todos os ficheiros trnasversais às páginas
 //COM ESTRUTURA SWITCH CASE
 
     switch($pag){
+        case 'logout':
+            session_destroy();
+            Header('Location: '.$_SERVER['PHP_SELF']);
+            return;
+            break;
         case 'inicio':
             include ('inicio.php');
             break;
@@ -71,10 +76,15 @@ incluir todos os ficheiros trnasversais às páginas
             break;
         case 'areaReservada':
             //VERIFICA SE HOUVE SUBMISSÃO DO FORMULÁRIO
+            $erro = false;
             if ($_SERVER['REQUEST_METHOD']=='POST'){
                 //die('formulário submetido!');
                 //VOU CRIAR UMA FUNÇÃO PARA USAR PARA VERIFICAR O LOGIN, EM VEZ DE ESCREVER TODO O CÓDIGO AQUI
-                verificarLogin();
+                if (verificarLogin()){      //função retorna true ou false
+                    include ('layout/user.php');    //////////////////true -> login válido
+                } else {
+                    $erro = true;                   /////////////////false -> login inválido
+                }
             }
             include ('areaReservada.php');
             break;
@@ -87,8 +97,67 @@ incluir todos os ficheiros trnasversais às páginas
     include ('layout/html_footer.php');
 
 function verificarLogin(){
+
+    /* UTILIZADOR HARDCODED /////////////////////////////
     $user = 'admin';
     $pass = '1234';
+    */
+
+    //BUSCAR DADOS DE USER À BD
+    // -se user existe = login válido
+    // -se user não existe
+    //   -verifica se senha é válida
+    //     -sim = cria sessão
+    //     -não = login inválido
+
+    $user = trim($_POST['txtUser']);  //trim para remover espaços a mais 
+    $pass = trim($_POST['txtPass']);
+
+    include 'gestor.php';
+    $gestor = new Gestor();
+    $params = array (
+        ':user' => $user
+    );
+    $resultado = $gestor->EXE_QUERY("
+        SELECT * FROM users  
+        WHERE user = :user 
+    ",$params);
+
+    // echo '<pre>';
+    // print_r($resultado);
+    if (count($resultado) == 0){//user não existe na BD
+        //die("login inválido!"); 
+        return false;
+    } else {                    //user existe pelo menos 1 vez na BD
+        $senha_BD = $resultado[0]['senha'];
+        /*
+        Array
+    (
+    [0] => Array
+        (
+            [id_user] => 2
+            [user] => admin
+            [senha] => $2y$10$nrS/9Nu9FEV.kuHxXJECtu6WSXZgreaclGM84ayKyvC3U4oDUdj/u
+        )
+
+    )
+        */
+        /////////////////////VERIFICAÇÃO DA SENHA////////////////////////////////
+        if (password_verify($pass,$senha_BD)){//encripta $pass com HASH e $senha_BD e compara, return de true ou false
+            
+            $_SESSION['user']=$resultado[0]['user'];
+            return true;//SENHA VÁLIDA
+        } else {
+            
+            
+            return false;//SENHA INVÁLIDA
+        }    
+
+    }
+
+    /*
+    die();
+
     //verifica se os dados do post correspondem
     if(($_POST['txtUser'] == $user) && ($_POST['txtPass'] == $pass)){
         //echo 'OK!';
@@ -100,6 +169,8 @@ function verificarLogin(){
         //echo 'NOT OK';
         return false;
     }
+
+    */
 }
 
 
