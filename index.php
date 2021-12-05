@@ -14,6 +14,7 @@ incluir todos os ficheiros trnasversais às páginas
 
     include ('layout/html_header.php');
     include ('layout/nav.php');
+    include ('layout/user.php');
 
     $pag = "inicio";
     
