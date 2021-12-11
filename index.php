@@ -113,7 +113,7 @@ function verificarLogin(){
     $user = trim($_POST['txtUser']);  //trim para remover espaços a mais 
     $pass = trim($_POST['txtPass']);
 
-    include 'gestor.php';
+    include '/gestor.php';
     $gestor = new Gestor();
     $params = array (
         ':user' => $user

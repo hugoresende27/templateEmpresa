@@ -53,7 +53,7 @@
                 
                 $email = $_POST['txtEmail'];
 
-                include 'gestor.php';
+                include '/gestor.php';
                 $g = new Gestor();
 
                 $params = array (
